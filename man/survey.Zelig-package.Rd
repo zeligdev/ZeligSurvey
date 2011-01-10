@@ -3,12 +3,10 @@
 \alias{survey.Zelig}
 \docType{package}
 \title{
-What the package does (short line)
-~~ package title ~~
+  Survey-Weighted Models for Zelig
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+  Implements survey-weighted models using the Zelig API.
 }
 \details{
 \tabular{ll}{
@@ -19,25 +17,21 @@ Date: \tab 2011-01-10\cr
 License: \tab What license is it under?\cr
 LazyLoad: \tab yes\cr
 }
-~~ An overview of how to use the package, including the most important ~~
-~~ functions ~~
 }
 \author{
-Who wrote it
+Matthew Owen, Olivia Lau, Kosuke Imai, Gary King
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Maintainer: mowen@iq.harvard.edu
 }
 \references{
-~~ Literature or other references for background information ~~
+
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in ~~
-~~ the R documentation directory ~~
 \keyword{ package }
+\keyword{ survey }
+\keyword{ Zelig }
+
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
 }
 \examples{
-~~ simple examples of the most important functions ~~
+
 }

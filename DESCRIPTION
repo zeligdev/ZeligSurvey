@@ -1,10 +1,11 @@
 Package: survey.Zelig
 Type: Package
-Title: What the package does (short line)
+Title: Survey-Weighted General Linear Models for Zelig
+Depends: Zelig, survey
 Version: 1.0
 Date: 2011-01-10
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Matt Owen
+Maintainer: Matt Owen<mowen@iq.harvard.edu>
+Description: Implements Survey-weighted General Linear Models for Zelig
+License: GPL
 LazyLoad: yes
