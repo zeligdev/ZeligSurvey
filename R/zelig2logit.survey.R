@@ -1,4 +1,4 @@
-zelig2gamma.survey <- function(
+zelig2logit.survey <- function(
                                model,
                                formula,
                                weights=NULL, 
@@ -28,15 +28,8 @@ zelig2gamma.survey <- function(
                                y=TRUE,
                                contrasts=NULL,
                                design=NULL,
-                               link=NULL,
                                data
                                ) {
-  # assigning default parameters
-  family <- if (is.null(link))
-    Gamma(link="inverse")
-  else
-    Gamma(link=link)
-
   if (is.null(ids))
     ids <- ~1
 
@@ -93,7 +86,7 @@ zelig2gamma.survey <- function(
        "svyglm",
        formula = formula,
        design  = design,
-       family  = Gamma()
+       family  = binomial(link="logit")
        )
 }
 

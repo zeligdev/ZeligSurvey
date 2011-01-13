@@ -1,4 +1,4 @@
-zelig2gamma.survey <- function(
+zelig2poisson.survey <- function(
                                model,
                                formula,
                                weights=NULL, 
@@ -28,14 +28,8 @@ zelig2gamma.survey <- function(
                                y=TRUE,
                                contrasts=NULL,
                                design=NULL,
-                               link=NULL,
                                data
                                ) {
-  # assigning default parameters
-  family <- if (is.null(link))
-    Gamma(link="inverse")
-  else
-    Gamma(link=link)
 
   if (is.null(ids))
     ids <- ~1
@@ -74,27 +68,11 @@ zelig2gamma.survey <- function(
                 )
   }
 
-  # formals(glm)$family <- "SPAGHETTI!!"
-
-  # we cannot plug in family=Gamma yet because of weird issues
-  # with glm. Uncomment the below lines for an explanation:
-
-  ## fails:
-  # test <- Gauss
-  # svyglm(formula=formula, design=design, family=test)
-
-  ## works:
-  # svyglm(formula=formula, design=design, family=Gauss)
-
-  # this is because of how glm is written (it evaluates the
-  # family variable as a function in the parent.frame)
-
+  
   list(
        "svyglm",
        formula = formula,
        design  = design,
-       family  = Gamma()
+       family  = poisson(link=link)
        )
 }
-
-  
