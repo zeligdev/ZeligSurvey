@@ -1,17 +1,19 @@
 library(survey.Zelig)
-library(MASS)
-library(survey)
 
+#####  Example 1: User has Existing Sample Weights #####
+
+# Attach sample data and variable names:  
 data(api)
 
-z.out1 <- zelig(api00 ~ meals + yr.rnd,
-                model   = "gamma.survey",  
-                weights = ~pw,
-                data    = apistrat
-                )
+# In this example, we will estimate a model using 
+# the percentages of students who receive subsidized 
+# lunch and an indicator for whether schooling is 
+# year-round to predict California public schools' 
+# academic performance index scores:
 
+z.out1 <- zelig(api00 ~ meals + yr.rnd, model = "normal.survey",  
+  weights=~pw, data = apistrat)
 summary(z.out1)
-
 
 # Set explanatory variables to their default (mean/mode) values, and set
 # a high (80th percentile) and low (20th percentile) value for "meals,"
@@ -20,23 +22,20 @@ summary(z.out1)
 x.low <- setx(z.out1, meals= quantile(apistrat$meals, 0.2))
 x.high <- setx(z.out1, meals= quantile(apistrat$meals, 0.8))
 
-
 # Generate first differences for the effect of high versus low "meals" 
 # on academic performance:
 
 s.out1 <- sim(z.out1, x=x.high, x1=x.low)
-
 summary(s.out1)
-
-
 
 # Generate a second set of fitted values and a plot:
 
 plot(s.out1)
 
 
+
 ####  Example 2: User has Details about Complex Survey Design  ####
-####  (but not sample weights)                                 ####
+####  (but not sample weights) 					   ####
 
 # Suppose that the survey house that provided
 # the dataset excluded probability weights 
@@ -48,14 +47,14 @@ plot(s.out1)
 # selected and the size of the finite sample from
 # which each observation was selected.
 
-z.out2 <- zelig(api00 ~ meals + yr.rnd, model = "gamma.survey",  
+z.out2 <- zelig(api00 ~ meals + yr.rnd, model = "normal.survey",  
   strata=~stype, fpc=~fpc, data = apistrat)
 summary(z.out2)
 
 # Note that these results are identical to the results obtained
 # when pre-existing sampling weights were used.  When sampling 
 # weights are omitted, Zelig estimates them automatically for 
-# "gamma.survey" models based on the user-defined description 
+# "normal.survey" models based on the user-defined description 
 # of sampling designs.  If no description is present, the default 
 # assumption is equal probability sampling.
 # 
@@ -66,38 +65,39 @@ summary(z.out2)
 
 #####  Example 3: User has Replicate Weights #####
 
-# Suppose that the survey house that published 
-# these data withheld details about the survey 
-# design and instead published replication weights
+# Load data for a model using the number of out-of-hospital
+# cardiac arrests to predict the number of patients who arrive 
+# alive in hospitals: 
 
-# For the purpose of illustration, create a set of
-# jk1 replicate weights
+data(scd)
 
-jk1reps <- jk1weights(psu=apistrat$dnum)
+# Create four Balanced Repeated Replicate (BRR) weights:
 
-# Estimate the model regressing api00 on the "meals" 
-# "yr.rnd" variables. 
+BRRrep<-2*cbind(c(1,0,1,0,1,0), c(1,0,0,1,0,1), c(0,1,1,0,0,1),
+c(0,1,0,1,1,0))
 
-z.out3 <- zelig(api00 ~ meals + yr.rnd, model = "gamma.survey", 
-		data = apistrat, repweights=jk1reps$weights,
-		type="JK1")
+# Estimate the model using Zelig:
+
+z.out3 <- zelig(formula=alive ~ arrests , model = "normal.survey", 
+  repweights=BRRrep, type="BRR", data=scd, na.action=NULL)
 summary(z.out3)
 
-# Set the explanatory variable "meals" at high and low values
+# Set the explanatory variable at its minimum and maximum 
 
-x.low <- setx(z.out3, meals= quantile(apistrat$meals, 0.2))
-x.high <- setx(z.out3, meals= quantile(apistrat$meals, 0.8))
+x.min <- setx(z.out3, arrests = min(scd$alive))
+x.max <- setx(z.out3, arrests = max(scd$alive))
 
-# Generate first differences for the effect of the high
-# versus low concentrations of poverty on school performance
+# Generate first differences for the effect of the minimum
+# versus the maximum number of cardiac arrests on the number
+# of people who arrive alive:
 
-s.out3 <- sim(z.out3, x=x.high, x1=x.low)
+s.out3 <- sim(z.out3, x=x.max, x1=x.min)
 summary(s.out3)
 
 # Generate a second set of fitted values and a plot:
-
 plot(s.out3)
 
-#### The user should also refer to the gamma model demo, since  ####
-#### gamma.survey models can take many of the same options as   ####
-#### gamma models. 		 					    ####
+#### The user should also refer to the normal model demo, since ####
+#### normal.survey models can take many of the same options as  ####
+#### normal models. 		 					    ####
+
