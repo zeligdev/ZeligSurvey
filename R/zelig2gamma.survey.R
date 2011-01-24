@@ -72,6 +72,6 @@ zelig2gamma.survey <- function(
        
        formula = formula,
        design  = design,
-       family  = Gamma(link=link)
+       family  = Gamma()
        )
 }

@@ -69,7 +69,7 @@ zelig2normal.survey <- function(
 
   
   list(
-       "svyglm",
+       .function = "svyglm",
        formula = formula,
        design  = design
        )

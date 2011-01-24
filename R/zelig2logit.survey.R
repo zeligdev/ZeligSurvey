@@ -83,10 +83,10 @@ zelig2logit.survey <- function(
   # family variable as a function in the parent.frame)
 
   list(
-       "svyglm",
+      .function = "svyglm",
        formula = formula,
        design  = design,
-       family  = binomial(link="logit")
+       family  = quasibinomial(link="logit")
        )
 }
 

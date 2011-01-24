@@ -1,0 +1,262 @@
+
+R version 2.12.1 (2010-12-16)
+Copyright (C) 2010 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: x86_64-redhat-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(survey.Zelig)
+Loading required package: Zelig
+Loading required package: MASS
+Loading required package: iterators
+Loading required package: survival
+Loading required package: splines
+
+   ZELIG (Versions 4.0-0, built: 2010-09-28)
++----------------------------------------------------------------+
++  Please refer to http://gking.harvard.edu/zelig for full       +
++  documentation or help.zelig() for help with commands and      +
++  models support by Zelig.                                      +
++                                                                +
++  Zelig project citations:                                      +
++    Kosuke Imai, Gary King, and Olivia Lau.  (2009).            +
++    ``Zelig: Everyone's Statistical Software,''                 +
++    http://gking.harvard.edu/zelig                              +
++   and                                                          +
++    Kosuke Imai, Gary King, and Olivia Lau. (2008).             +
++    ``Toward A Common Framework for Statistical Analysis        +
++    and Development,'' Journal of Computational and             +
++    Graphical Statistics, Vol. 17, No. 4 (December)             +
++    pp. 892-913.                                                +
++                                                                +
++   To cite individual Zelig models, please use the citation     +
++   format printed with each model run and in the documentation. +
++----------------------------------------------------------------+
+
+Loading required package: survey
+
+Attaching package: 'survey'
+
+The following object(s) are masked from 'package:graphics':
+
+    dotchart
+
+> 
+> data(api, package="survey")
+> 
+> # TEST 1
+> z.out1 <- zelig(enroll ~ api99 + yr.rnd , model = "poisson.survey", data = apistrat)
+
+
+How to cite this model in Zelig:
+  Kosuke Imai, Gary King, and Olivia Lau. 2011.
+  "poisson.survey"
+  in Kosuke Imai, Gary King, and Olivia Lau, "Zelig: Everyone's Statistical Software,"
+  http://gking.harvard.edu/zelig
+
+> summary(z.out1)
+
+Call:
+svyglm(formula = stored.formula, design = design, family = stored.family)
+
+Survey design:
+svydesign(data = data, ids = ids, probs = probs, strata = strata, 
+    fpc = fpc, nest = nest, check.strata = check.strata, weights = weights)
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  7.1282917  0.2645220  26.948   <2e-16 ***
+api99       -0.0008395  0.0004091  -2.052   0.0415 *  
+yr.rndYes    0.0556202  0.1730477   0.321   0.7482    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+(Dispersion parameter for poisson family taken to be 391.138)
+
+Number of Fisher Scoring iterations: 5
+
+> 
+> x.low <- setx(z.out1, api00= quantile(apistrat$api00, 0.2))
+> x.high <- setx(z.out1, api00= quantile(apistrat$api00, 0.8))
+> 
+> x.low
+
+model name: poisson.survey
+formula:    enroll ~ api99 + yr.rnd
+cond:       No
+results of fn:
+  api99  = 624.825
+  yr.rnd = No
+  api00  = 534
+
+> x.high
+
+model name: poisson.survey
+formula:    enroll ~ api99 + yr.rnd
+cond:       No
+results of fn:
+  api99  = 624.825
+  yr.rnd = No
+  api00  = 764.2
+
+> 
+> s.out1 <- sim(z.out1, x=x.low, x1=x.high)
+> 
+> summary(s.out1)
+
+Model: poisson.survey
+Number of simulations: 1000
+
+Values of X
+      (Intercept)   api99 yr.rndYes
+coef:           1 624.825         0
+
+Values of X1
+      (Intercept)   api99 yr.rndYes
+coef:           1 624.825         0
+
+
+Expected Values: E(Y|X)
+    mean     sd     50%    2.5%   97.5%
+ 740.285 40.902 739.045 665.617 822.017
+
+Expected Values for (X1): E(Y|X1)
+    mean     sd     50%    2.5%   97.5%
+ 740.285 40.902 739.045 665.617 822.017
+
+Predicted Values: Y|X
+    mean     sd 50%   2.5% 97.5%
+ 739.615 49.361 735 647.95   836
+
+First Differences E(Y|X1)-E(Y|X)
+ mean sd 50% 2.5% 97.5%
+    0  0   0    0     0
+> 
+> plot(s.out1)
+> 
+> 
+> # TEST 2
+> z.out2 <- zelig(
++                 enroll ~ api99 + yr.rnd,
++                 model = "poisson.survey",
++                 data = apistrat, 
++                 strata=~stype,
++                 fpc=~fpc
++                 )
+
+
+How to cite this model in Zelig:
+  Kosuke Imai, Gary King, and Olivia Lau. 2011.
+  "poisson.survey"
+  in Kosuke Imai, Gary King, and Olivia Lau, "Zelig: Everyone's Statistical Software,"
+  http://gking.harvard.edu/zelig
+
+> 
+> summary(z.out2)
+
+Call:
+svyglm(formula = stored.formula, design = design, family = stored.family)
+
+Survey design:
+svydesign(data = data, ids = ids, probs = probs, strata = strata, 
+    fpc = fpc, nest = nest, check.strata = check.strata, weights = weights)
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  6.9287587  0.2177819  31.815  < 2e-16 ***
+api99       -0.0008984  0.0003316  -2.709  0.00734 ** 
+yr.rndYes    0.1207127  0.1097426   1.100  0.27270    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+(Dispersion parameter for poisson family taken to be 314.0072)
+
+Number of Fisher Scoring iterations: 5
+
+> 
+> data(scd, package="survey")
+> 
+> BRRrep<-2*cbind(
++                 c(1,0,1,0,1,0),
++                 c(1,0,0,1,0,1),
++                 c(0,1,1,0,0,1),
++                 c(0,1,0,1,1,0)
++                 )
+> 
+> z.out3 <- zelig(
++                 alive ~ arrests,
++                 model = "poisson.survey", 
++                 repweights=BRRrep,
++                 type="BRR",
++                 data=scd
++                 )
+
+
+How to cite this model in Zelig:
+  Kosuke Imai, Gary King, and Olivia Lau. 2011.
+  "poisson.survey"
+  in Kosuke Imai, Gary King, and Olivia Lau, "Zelig: Everyone's Statistical Software,"
+  http://gking.harvard.edu/zelig
+
+Warning message:
+In svrepdesign.default(data = data, repweights = repweights, type = type,  :
+  No sampling weights provided: equal probability assumed
+> 
+> summary(z.out3)
+
+Call:
+svyglm(formula = stored.formula, design = design, family = stored.family)
+
+Survey design:
+svrepdesign.default(data = data, repweights = repweights, type = type, 
+    weights = weights, combined.weights = combined.weights, rho = rho, 
+    bootstrap.average = bootstrap.average, scale = scale, rscales = rscales, 
+    fpctype = fpctype, fpc = fpc)
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)   
+(Intercept) 3.1552572  0.1426950  22.112  0.00204 **
+arrests     0.0019342  0.0002659   7.273  0.01838 * 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+(Dispersion parameter for poisson family taken to be 6.500826)
+
+Number of Fisher Scoring iterations: 4
+
+> 
+> x.low <- setx(z.out3, arrests = quantile(scd$arrests, .2))
+> x.high <- setx(z.out3, arrests = quantile(scd$arrests,.8))
+> 
+> x.low
+
+model name: poisson.survey
+formula:    alive ~ arrests
+cond:       No
+results of fn:
+  arrests = 120
+
+> x.high
+
+model name: poisson.survey
+formula:    alive ~ arrests
+cond:       No
+results of fn:
+  arrests = 530
+
+> 
+> s.out3 <- sim(z.out3, x=x.high, x1=x.low)
+> 
+> plot(s.out3)
+> 

@@ -70,9 +70,9 @@ zelig2probit.survey <- function(
 
   
   list(
-       "svyglm",
+       .function = "svyglm",
        formula = formula,
        design  = design,
-       family  = binomial(link="probit")
+       family  = quasibinomial(link="probit")
        )
 }

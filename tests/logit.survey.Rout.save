@@ -1,0 +1,254 @@
+
+R version 2.12.1 (2010-12-16)
+Copyright (C) 2010 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: x86_64-redhat-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(survey.Zelig)
+Loading required package: Zelig
+Loading required package: MASS
+Loading required package: iterators
+Loading required package: survival
+Loading required package: splines
+
+   ZELIG (Versions 4.0-0, built: 2010-09-28)
++----------------------------------------------------------------+
++  Please refer to http://gking.harvard.edu/zelig for full       +
++  documentation or help.zelig() for help with commands and      +
++  models support by Zelig.                                      +
++                                                                +
++  Zelig project citations:                                      +
++    Kosuke Imai, Gary King, and Olivia Lau.  (2009).            +
++    ``Zelig: Everyone's Statistical Software,''                 +
++    http://gking.harvard.edu/zelig                              +
++   and                                                          +
++    Kosuke Imai, Gary King, and Olivia Lau. (2008).             +
++    ``Toward A Common Framework for Statistical Analysis        +
++    and Development,'' Journal of Computational and             +
++    Graphical Statistics, Vol. 17, No. 4 (December)             +
++    pp. 892-913.                                                +
++                                                                +
++   To cite individual Zelig models, please use the citation     +
++   format printed with each model run and in the documentation. +
++----------------------------------------------------------------+
+
+Loading required package: survey
+
+Attaching package: 'survey'
+
+The following object(s) are masked from 'package:graphics':
+
+    dotchart
+
+> 
+> data(api, package="survey")
+> 
+> 
+> # TEST 1
+> z.out1 <- zelig(
++                 yr.rnd ~ meals + mobility,
++                 model = "logit.survey",
++                 weights=~pw,
++                 data = apistrat
++                 )
+
+
+How to cite this model in Zelig:
+  Kosuke Imai, Gary King, and Olivia Lau. 2011.
+  "logit.survey"
+  in Kosuke Imai, Gary King, and Olivia Lau, "Zelig: Everyone's Statistical Software,"
+  http://gking.harvard.edu/zelig
+
+> summary(z.out1)
+
+Call:
+svyglm(formula = stored.formula, design = design, family = stored.family)
+
+Survey design:
+svydesign(data = data, ids = ids, probs = probs, strata = strata, 
+    fpc = fpc, nest = nest, check.strata = check.strata, weights = weights)
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -5.29981    0.97979  -5.409 1.82e-07 ***
+meals        0.03746    0.01158   3.235  0.00143 ** 
+mobility     0.06069    0.02001   3.032  0.00275 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+(Dispersion parameter for quasibinomial family taken to be 0.940999)
+
+Number of Fisher Scoring iterations: 6
+
+> 
+> 
+> x.low <- setx(z.out1, meals= quantile(apistrat$meals, 0.2))
+> x.high <- setx(z.out1, meals= quantile(apistrat$meals, 0.8))
+> 
+> # 
+> x.low
+
+model name: logit.survey
+formula:    yr.rnd ~ meals + mobility
+cond:       No
+results of fn:
+  mobility = 16.4
+  meals    = 18
+
+> x.high
+
+model name: logit.survey
+formula:    yr.rnd ~ meals + mobility
+cond:       No
+results of fn:
+  mobility = 16.4
+  meals    = 74.2
+
+> 
+> s.out1 <- sim(z.out1, x=x.low, x1=x.high)
+> 
+> plot(s.out1)
+> 
+> 
+> # TEST 2
+> z.out2 <- zelig(
++                 yr.rnd ~ meals + mobility,
++                 model = "logit.survey",
++                 strata=~stype,
++                 fpc=~fpc,
++                 data = apistrat
++                 )
+
+
+How to cite this model in Zelig:
+  Kosuke Imai, Gary King, and Olivia Lau. 2011.
+  "logit.survey"
+  in Kosuke Imai, Gary King, and Olivia Lau, "Zelig: Everyone's Statistical Software,"
+  http://gking.harvard.edu/zelig
+
+> summary(z.out2)
+
+Call:
+svyglm(formula = stored.formula, design = design, family = stored.family)
+
+Survey design:
+svydesign(data = data, ids = ids, probs = probs, strata = strata, 
+    fpc = fpc, nest = nest, check.strata = check.strata, weights = weights)
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -5.29981    0.96876  -5.471 1.36e-07 ***
+meals        0.03746    0.01145   3.270  0.00127 ** 
+mobility     0.06069    0.01929   3.145  0.00192 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+(Dispersion parameter for quasibinomial family taken to be 0.940999)
+
+Number of Fisher Scoring iterations: 6
+
+> 
+> 
+> # TEST 3
+> data(scd)
+> 
+> scd$sued <- as.vector(c(0,0,0,1,1,1))
+> 
+> BRRrep<-2 * cbind(
++                   c(1,0,1,0,1,0),
++                   c(1,0,0,1,0,1),
++                   c(0,1,1,0,0,1),
++                   c(0,1,0,1,1,0)
++                   )
+> 
+> 
+> z.out3 <- zelig(
++                 formula=sued ~ arrests + alive,
++                 model = "logit.survey",
++                 repweights=BRRrep,
++                 type="BRR",
++                 data=scd
++                 )
+
+
+How to cite this model in Zelig:
+  Kosuke Imai, Gary King, and Olivia Lau. 2011.
+  "logit.survey"
+  in Kosuke Imai, Gary King, and Olivia Lau, "Zelig: Everyone's Statistical Software,"
+  http://gking.harvard.edu/zelig
+
+Warning message:
+In svrepdesign.default(data = data, repweights = repweights, type = type,  :
+  No sampling weights provided: equal probability assumed
+> 
+> summary(z.out3)
+
+Call:
+svyglm(formula = stored.formula, design = design, family = stored.family)
+
+Survey design:
+svrepdesign.default(data = data, repweights = repweights, type = type, 
+    weights = weights, combined.weights = combined.weights, rho = rho, 
+    bootstrap.average = bootstrap.average, scale = scale, rscales = rscales, 
+    fpctype = fpctype, fpc = fpc)
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)   
+(Intercept) -83.631143   0.285308 -293.12  0.00217 **
+arrests      -0.224416   0.002411  -93.07  0.00684 **
+alive         3.242239   0.022321  145.25  0.00438 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+(Dispersion parameter for quasibinomial family taken to be 1.455431e-10)
+
+Number of Fisher Scoring iterations: 23
+
+> 
+> x.low <- setx(z.out3, arrests = quantile(scd$arrests, .2))
+> x.high <- setx(z.out3, arrests = quantile(scd$arrests,.8))
+> 
+> s.out3 <- sim(z.out3, x=x.high, x1=x.low)
+> 
+> summary(s.out3)
+
+Model: logit.survey
+Number of simulations: 1000
+
+Values of X
+      (Intercept) arrests    alive
+coef:           1     530 46.33333
+
+Values of X1
+      (Intercept) arrests    alive
+coef:           1     120 46.33333
+
+
+Expected Values: E(Y|X)
+ mean sd 50% 2.5% 97.5%
+    0  0   0    0     0
+
+Expected Values (for x1): E(Y|X1)
+ mean sd 50% 2.5% 97.5%
+    1  0   1    1     1
+
+Predicted Values: Y|X
+ 0
+ 1
+
+Risk Ratios: P(Y=1|X1)/P(Y=0|X)
+       mean sd        50%       2.5%      97.5%
+ 4.5036e+15  0 4.5036e+15 4.5036e+15 4.5036e+15
+> 

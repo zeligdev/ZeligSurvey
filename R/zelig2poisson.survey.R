@@ -70,7 +70,7 @@ zelig2poisson.survey <- function(
 
   
   list(
-       "svyglm",
+       .function = "svyglm",
        formula = formula,
        design  = design,
        family  = poisson()
