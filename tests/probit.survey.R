@@ -19,8 +19,11 @@ x.high
 
 s.out1 <- sim(z.out1, x=x.low, x1=x.high)
 
+
 plot(s.out1)
 
+
+# TEST 2
 z.out2 <- zelig(
                 yr.rnd ~ meals + mobility,
                 model = "probit.survey",

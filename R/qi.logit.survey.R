@@ -34,11 +34,19 @@ qi.logit.survey <- function(z, x, x1=NULL, y=NULL, num=1000, param=NULL) {
   pr1 <- ev1 <- fd <- rr <- NA
 
   
-  if (!is.null(x)) {
+  if (!is.null(x1)) {
     ev1 <- theta1 <- matrix(link.inverse(coef %*% t(x1)),
                             nrow = nrow(coef)
                             )
 
+
+    pr1 <- matrix(NA, nrow=nrow(theta), ncol(theta))
+
+    for (k in 1:ncol(theta)) {
+      pr1[,k] <- rbinom(length(ev1[,k]), 1, ev1[,k])
+      pr1[,k] <- as.character(pr1[,k])
+    }
+    
     fd <- ev1-ev
     rr <- ev1/ev
   }
@@ -60,10 +68,12 @@ qi.logit.survey <- function(z, x, x1=NULL, y=NULL, num=1000, param=NULL) {
   }
   
 
-  list("Expected Values: E(Y|X)" = ev,
+  list(
+       "Expected Values: E(Y|X)" = ev,
        "Expected Values (for x1): E(Y|X1)" = ev1,
        "Predicted Values: Y|X" = pr,
        "Predicted Values (for x1): Y|X1" = pr1,
+       "First Differences: E(Y|X1)-E(Y|X)" = fd,
        "Risk Ratios: P(Y=1|X1)/P(Y=0|X)" = rr,
        "Average Treatment Effect: Y - EV" = att.ev,
        "Average Treatment Effect: Y - PR" = att.pr
