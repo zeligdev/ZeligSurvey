@@ -24,21 +24,21 @@ plot.sim.probit.survey <- function(
 
   #
   if (!(is.null(qi$ev1) || is.na(qi$ev1)))
-    truehist(
-             qi$ev1,
-             main = "Expected Values: E(Y|X)",
-             xlab = paste("N =", length(qi$ev1)),
-             ylab = "Density", col="red"
-             )
+    hist(
+         qi$ev1,
+         main = "Expected Values: E(Y|X)",
+         xlab = paste("N =", length(qi$ev1)),
+         col = "red"
+         )
 
   #
-  if (!(is.null(qi$ev2) || is.na(qi$ev2)))
-    truehist(
-             qi$ev2,
-             main = "Expected Values: E(Y|X1)", 
-             xlab = paste("N =", length(qi$ev2)),
-             ylab = "Density", col="cyan"
-             )
+  if (!(is.null(qi$ev2) || is.na(qi$ev2))) 
+    hist(
+         qi$ev2,
+         main = "Expected Values (for X1): E(Y|X1)",
+         xlab = paste("N = ", length(qi$ev2)),
+         col = "cyan"
+         )
 
   #
   if (!(is.null(qi$pv1) || is.na(qi$pv1))) {
@@ -90,5 +90,3 @@ plot.sim.gamma.survey <- plot.sim.probit.survey
 plot.sim.logit.survey <- plot.sim.probit.survey
 plot.sim.normal.survey <- plot.sim.probit.survey
 plot.sim.poisson.survey <- plot.sim.probit.survey
-
-
