@@ -1,11 +1,35 @@
-\SweaveOpts{results=hide, prefix.string=vigpics/normal}
-\include{zinput}
+\documentclass{article}
+
+\SweaveOpts{results=hide, prefix.string=vigpics/normalsurvey}
+
+\usepackage{Zelig}
+\usepackage{Rd}
+\usepackage{bibentry}
+\usepackage{upquote}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage[reqno]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{epsf}
+\usepackage{url}
+\usepackage{html}
+\usepackage{dcolumn}
+\usepackage{multirow}
+\usepackage{fullpage}
+\usepackage{lscape}
+
 %\VignetteIndexEntry{Survey-Weighted Normal Regression  for Continuous Dependent Variables}
 %\VignetteDepends{Zelig, stats, survey}
 %\VignetteKeyWords{model, normal, regression, continuous, least squares, survey-weight}
 %\VignettePackage{Zelig}
+
 \begin{document}
+
 \nobibliography* 
+
 <<beforepkgs, echo=FALSE>>=
  before=search()
 @
@@ -481,11 +505,13 @@ object called {\tt .survey.prob.weights} is created in the global environment.
 {\tt Zelig} will over-write any existing object with that name, and users 
 are therefore advised to re-name any object called {\tt .survey.prob.weights} before using {\tt normal.survey} models in {\tt Zelig}.
 
-\subsection* {How to Cite}
-\input{cites/normal.survey}
- \input{citeZelig}
+\subsection*{How to Cite the Normal Model}
+\bibentry{ImaLauKin-normal.survey11}
+
+\subsection*{How to Cite the Zelig Software Package}
+\CiteZelig
  
- \subsection* {See also}
+\subsection* {See also}
  
  Survey-weighted linear models and the sample data used in the
  examples above are a part of the {\tt survey} package by Thomas
@@ -499,8 +525,9 @@ are therefore advised to re-name any object called {\tt .survey.prob.weights} be
  
  
  
-\bibliographystyle{asa}
-\bibliography{gk,gkpubs}
+\bibliographystyle{plain}
+\bibliography{survey.Zelig}
+
 <<afterpkgs, echo=FALSE>>=
   after<-search()
   torm<-setdiff(after,before)

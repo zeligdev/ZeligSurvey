@@ -1,11 +1,35 @@
+\documentclass{article}
+
 \SweaveOpts{results=hide, prefix.string=vigpics/logitsurvey}
-\include{zinput}
+
+\usepackage{Zelig}
+\usepackage{Rd}
+\usepackage{bibentry}
+\usepackage{upquote}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage[reqno]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{epsf}
+\usepackage{url}
+\usepackage{html}
+\usepackage{dcolumn}
+\usepackage{multirow}
+\usepackage{fullpage}
+\usepackage{lscape}
+
 %\VignetteIndexEntry{Survey-Weighted Logistic Regression for Dichotomous Dependent Variables}
 %\VignetteDepends{Zelig, stats, survey}
 %\VignetteKeyWords{model,logistic,dichotomous, regression, survey}
 %\VignettePackage{Zelig}
+
 \begin{document}
+
 \nobibliography* 
+
 <<beforepkgs, echo=FALSE>>=
  before=search()
 @
@@ -490,12 +514,15 @@ object called {\tt .survey.prob.weights} is created in the global environment.
 {\tt Zelig} will over-write any existing object with that name, and users 
 are therefore advised to re-name any object called {\tt .survey.prob.weights} before using {\tt logit.survey} models in {\tt Zelig}.
 
-\subsection* {How to Cite}
 
-\input{cites/logit.survey}
- \input{citeZelig}
+\subsection*{How to Cite the Logit Model}
+\bibentry{ImaLauKin-logit.survey11}
+
+\subsection*{How to Cite the Zelig Software Package}
+\CiteZelig
+
  
- \subsection* {See also}
+\subsection* {See also}
  
  Survey-weighted linear models and the sample data used in the
  examples above are a part of the {\tt survey} package by Thomas
@@ -507,13 +534,13 @@ are therefore advised to re-name any object called {\tt .survey.prob.weights} be
  \texttt{help(glm)} and \texttt{help(family)}, as well as
  \cite{McCNel89}.
  
-\bibliographystyle{asa}
-\bibliography{gk,gkpubs}
+\bibliographystyle{plain}
+\bibliography{survey.Zelig}
+
 <<afterpkgs, echo=FALSE>>=
   after<-search()
   torm<-setdiff(after,before)
   for (pkg in torm)
   detach(pos=match(pkg,search()))
 @
-
 \end{document}

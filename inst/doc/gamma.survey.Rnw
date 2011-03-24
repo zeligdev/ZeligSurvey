@@ -1,10 +1,33 @@
+\documentclass{article}
+
 \SweaveOpts{results=hide, prefix.string=vigpics/gammasurvey}
-\include{zinput}
+
+\usepackage{Zelig}
+\usepackage{Rd}
+\usepackage{bibentry}
+\usepackage{upquote}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage[reqno]{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{epsf}
+\usepackage{url}
+\usepackage{html}
+\usepackage{dcolumn}
+\usepackage{multirow}
+\usepackage{fullpage}
+\usepackage{lscape}
+
 %\VignetteIndexEntry{Survey-Weighted Gamma Regression for Continuous, Positive Dependent Variables}
 %\VignetteDepends{Zelig, stats, survey}
 %\VignetteKeyWords{model,gamma ,continuous, regression, survey}
 %\VignettePackage{Zelig}
+
 \begin{document}
+
 \nobibliography* 
 <<beforepkgs, echo=FALSE>>=
  before=search()
@@ -473,11 +496,13 @@ object called {\tt .survey.prob.weights} is created in the global environment.
 {\tt Zelig} will over-write any existing object with that name, and users 
 are therefore advised to re-name any object called {\tt .survey.prob.weights} before using {\tt gamma.survey} models in {\tt Zelig}.
 
-\subsection* {How to Cite}
-\input{cites/gamma.survey}
- \input{citeZelig}
- 
- \subsection* {See also}
+\subsection*{How to Cite the Gamma Model}
+\bibentry{ImaLauKin-gamma.survey11}
+
+\subsection*{How to Cite the Zelig Software Package}
+\CiteZelig
+
+\subsection* {See also}
  
  Survey-weighted linear models and the sample data used in the
  examples above are a part of the {\tt survey} package by Thomas
@@ -489,8 +514,8 @@ are therefore advised to re-name any object called {\tt .survey.prob.weights} be
  \texttt{help(glm)} and \texttt{help(family)}, as well as
  \cite{McCNel89}.
   
-\bibliographystyle{asa}
-\bibliography{gk,gkpubs}
+\bibliographystyle{plain}
+\bibliography{survey.Zelig}
 
 <<afterpkgs, echo=FALSE>>=
   after<-search()
