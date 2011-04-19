@@ -1,5 +1,4 @@
 zelig2logit.survey <- function(
-                               model,
                                formula,
                                weights=NULL, 
                                ids=NULL,

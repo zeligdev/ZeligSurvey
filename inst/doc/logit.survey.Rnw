@@ -26,6 +26,9 @@
 %\VignetteKeyWords{model,logistic,dichotomous, regression, survey}
 %\VignettePackage{Zelig}
 
+\title{logit.survey: Survey-Weighted Logistic Regression for Dichotomous Dependent Variables}
+\author{Kosuke Imai, Olivia Lau, and Gary King}
+
 \begin{document}
 
 \nobibliography* 

@@ -28,6 +28,9 @@
 
 \begin{document}
 
+\title{poisson.survey: Survey-Weighted Poisson Regression for Event Count Dependent Variables}
+\author{Kosuke Imai, Olivia Lau, and Gary King}
+
 \nobibliography* 
 
 <<beforepkgs, echo=FALSE>>=

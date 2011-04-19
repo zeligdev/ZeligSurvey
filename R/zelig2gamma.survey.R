@@ -1,5 +1,4 @@
 zelig2gamma.survey <- function(
-                               model,
                                formula,
                                weights=NULL, 
                                ids=NULL,

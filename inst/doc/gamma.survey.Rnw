@@ -26,6 +26,9 @@
 %\VignetteKeyWords{model,gamma ,continuous, regression, survey}
 %\VignettePackage{Zelig}
 
+\title{gamma.survey: Survey-Weighted Gamma Regression for Continuous, Positive Dependent Variables}
+\author{Kosuke Imai, Olivia Lau, and Gary King}
+
 \begin{document}
 
 \nobibliography* 

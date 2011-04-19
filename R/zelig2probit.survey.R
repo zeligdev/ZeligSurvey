@@ -1,5 +1,4 @@
 zelig2probit.survey <- function(
-                                model,
                                formula,
                                 weights=NULL, 
                                 ids=NULL,

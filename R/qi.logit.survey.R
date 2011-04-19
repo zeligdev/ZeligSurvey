@@ -25,6 +25,8 @@ qi.logit.survey <- function(z, x, x1=NULL, y=NULL, num=1000, param=NULL) {
     pr[,k] <- rbinom(length(ev[,k]), 1, ev[,k])
     pr[,k] <- as.character(pr[,k])
   }
+
+  levels(pr) <- c("0", "1")
   
   if (!is.null(y) && NCOL(y))
     y <- y[,1]
@@ -46,6 +48,8 @@ qi.logit.survey <- function(z, x, x1=NULL, y=NULL, num=1000, param=NULL) {
       pr1[,k] <- rbinom(length(ev1[,k]), 1, ev1[,k])
       pr1[,k] <- as.character(pr1[,k])
     }
+
+    levels(pr1) <- c("0", "1")
     
     fd <- ev1-ev
     rr <- ev1/ev
@@ -66,7 +70,6 @@ qi.logit.survey <- function(z, x, x1=NULL, y=NULL, num=1000, param=NULL) {
     att.ev <- matrix(apply(tmp.ev, 1, mean), nrow=nrow(coef))
     att.pr <- matrix(apply(tmp.pr, 1, mean), nrow=nrow(coef))
   }
-  
 
   list(
        "Expected Values: E(Y|X)" = ev,

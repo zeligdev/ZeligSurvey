@@ -1,5 +1,4 @@
 zelig2normal.survey <- function(
-                               model,
                                formula,
                                weights=NULL, 
                                ids=NULL,

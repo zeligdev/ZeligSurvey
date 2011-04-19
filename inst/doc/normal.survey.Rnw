@@ -21,6 +21,8 @@
 \usepackage{fullpage}
 \usepackage{lscape}
 
+\title{normal.survey: Survey-Weighted Normal Regression for Continuous Dependent Variables}
+
 %\VignetteIndexEntry{Survey-Weighted Normal Regression  for Continuous Dependent Variables}
 %\VignetteDepends{Zelig, stats, survey}
 %\VignetteKeyWords{model, normal, regression, continuous, least squares, survey-weight}

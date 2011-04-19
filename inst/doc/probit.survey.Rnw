@@ -26,6 +26,9 @@
 %\VignetteKeyWords{model,probit ,dichotomous, regression, survey}
 %\VignettePackage{Zelig}
 
+\title{probit.survey: Survey-Weighted Probit Regression for Dichotomous Dependent Variables}
+\author{Kosuke Imai, Olivia Lau, and Gary King}
+
 \begin{document}
 
 \nobibliography* 
