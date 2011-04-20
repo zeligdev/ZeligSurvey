@@ -38,7 +38,7 @@
 @
 
 <<loadLibrary, echo=F,results=hide>>= 
-library(survey.Zelig)
+library(survey.zelig)
 @
 \section{{\tt logit.survey}: Survey-Weighted Logistic Regression for Dichotomous Dependent Variables}
 \label{logit.survey}

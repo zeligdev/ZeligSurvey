@@ -38,7 +38,7 @@
 @
 
 <<loadLibrary, echo=F,results=hide>>= 
-library(survey.Zelig) 
+library(survey.zelig) 
 @
 \section{{\tt poisson.survey}: Survey-Weighted Poisson Regression for Event Count Dependent Variables}
 \label{poisson.survey}
