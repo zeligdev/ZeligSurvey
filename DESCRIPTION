@@ -1,4 +1,4 @@
-Package: survey.Zelig
+Package: survey.zelig
 Type: Package
 Title: Survey-Weighted General Linear Models for Zelig
 Depends: Zelig, survey

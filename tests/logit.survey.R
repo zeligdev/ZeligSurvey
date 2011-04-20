@@ -1,4 +1,4 @@
-library(survey.Zelig)
+library(survey.zelig)
 
 data(api, package="survey")
 
@@ -63,5 +63,3 @@ x.low <- setx(z.out3, arrests = quantile(scd$arrests, .2))
 x.high <- setx(z.out3, arrests = quantile(scd$arrests,.8))
 
 s.out3 <- sim(z.out3, x=x.high, x1=x.low)
-
-summary(s.out3)

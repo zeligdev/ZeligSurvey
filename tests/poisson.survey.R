@@ -1,4 +1,4 @@
-library(survey.Zelig)
+library(survey.zelig)
 
 data(api, package="survey")
 
@@ -13,8 +13,6 @@ x.low
 x.high
 
 s.out1 <- sim(z.out1, x=x.low, x1=x.high)
-
-summary(s.out1)
 
 plot(s.out1)
 

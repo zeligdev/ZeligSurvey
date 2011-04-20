@@ -16,14 +16,15 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
-> library(survey.Zelig)
+> library(survey.zelig)
 Loading required package: Zelig
 Loading required package: MASS
 Loading required package: iterators
 Loading required package: survival
 Loading required package: splines
 
-   ZELIG (Versions 4.0-0, built: 2010-09-28)
+   ZELIG (Versions  4.0-0 , built:  2010-09-28 )
+
 +----------------------------------------------------------------+
 +  Please refer to http://gking.harvard.edu/zelig for full       +
 +  documentation or help.zelig() for help with commands and      +
@@ -64,11 +65,11 @@ The following object(s) are masked from 'package:graphics':
 
 
 How to cite this model in Zelig:
-  Kosuke Imai, Gary King, and Olivia Lau. 2011.
+  Nicholas Carnes. 2011.
   "gamma.survey"
   in Kosuke Imai, Gary King, and Olivia Lau, "Zelig: Everyone's Statistical Software,"
   http://gking.harvard.edu/zelig
-
+ 
 > 
 > summary(z.out1)
 
@@ -129,11 +130,11 @@ results of fn:
 
 
 How to cite this model in Zelig:
-  Kosuke Imai, Gary King, and Olivia Lau. 2011.
+  Nicholas Carnes. 2011.
   "gamma.survey"
   in Kosuke Imai, Gary King, and Olivia Lau, "Zelig: Everyone's Statistical Software,"
   http://gking.harvard.edu/zelig
-
+ 
 > 
 > summary(z.out2)
 
@@ -169,11 +170,11 @@ Number of Fisher Scoring iterations: 4
 
 
 How to cite this model in Zelig:
-  Kosuke Imai, Gary King, and Olivia Lau. 2011.
+  Nicholas Carnes. 2011.
   "gamma.survey"
   in Kosuke Imai, Gary King, and Olivia Lau, "Zelig: Everyone's Statistical Software,"
   http://gking.harvard.edu/zelig
-
+ 
 > 
 > summary(z.out3)
 
@@ -221,35 +222,6 @@ results of fn:
 > 
 > s.out3 <- sim(z.out3, x=x.high, x1=x.low)
 > 
-> summary(s.out3)
-
-Model: gamma.survey
-Number of simulations: 1000
-
-Values of X
-      (Intercept) meals yr.rndYes
-coef:           1  74.2         0
-
-Values of X1
-      (Intercept) meals yr.rndYes
-coef:           1    18         0
-
-
-Expected Values: E(Y|X)
-    mean    sd     50%    2.5%   97.5%
- 557.594 7.967 557.308 542.835 572.964
-
-Expected Values for (X1): E(Y|X1)
-    mean    sd     50%    2.5%   97.5%
- 740.111 7.382 739.986 725.383 754.915
-
-Predicted Values: Y|X
-    mean     sd     50%    2.5%   97.5%
- 560.996 71.424 555.053 431.664 708.889
-
-First Differences E(Y|X1)-E(Y|X)
-    mean    sd     50%    2.5%   97.5%
- 182.517 9.796 182.431 162.949 200.769
 > 
 > plot(s.out3)
 > 

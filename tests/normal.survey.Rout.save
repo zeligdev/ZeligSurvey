@@ -16,14 +16,15 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
-> library(survey.Zelig)
+> library(survey.zelig)
 Loading required package: Zelig
 Loading required package: MASS
 Loading required package: iterators
 Loading required package: survival
 Loading required package: splines
 
-   ZELIG (Versions 4.0-0, built: 2010-09-28)
+   ZELIG (Versions  4.0-0 , built:  2010-09-28 )
+
 +----------------------------------------------------------------+
 +  Please refer to http://gking.harvard.edu/zelig for full       +
 +  documentation or help.zelig() for help with commands and      +
@@ -65,11 +66,11 @@ The following object(s) are masked from 'package:graphics':
 
 
 How to cite this model in Zelig:
-  Kosuke Imai, Gary King, and Olivia Lau. 2011.
+  Nicholas Carnes. 2011.
   "normal.survey"
   in Kosuke Imai, Gary King, and Olivia Lau, "Zelig: Everyone's Statistical Software,"
   http://gking.harvard.edu/zelig
-
+ 
 > 
 > summary(z.out1)
 
@@ -116,35 +117,6 @@ results of fn:
 
 > 
 > s.out1 <- sim(z.out1, x=x.high, x1=x.low)
-> summary(s.out1)
-
-Model: normal.survey
-Number of simulations: 1000
-
-Values of X
-      (Intercept) meals yr.rndYes
-coef:           1  74.2         0
-
-Values of X1
-      (Intercept) meals yr.rndYes
-coef:           1    18         0
-
-
-Expected Values: E(Y|X)
-    mean    sd     50%    2.5%   97.5%
- 575.804 7.571 575.744 561.117 590.438
-
-Expected Values for (X1): E(Y|X1)
-    mean    sd     50%    2.5%   97.5%
- 764.808 7.242 765.051 750.509 779.338
-
-Predicted Values: Y|X
-    mean     sd    50%    2.5%   97.5%
- 576.217 74.337 571.73 435.843 727.979
-
-First Differences E(Y|X1)-E(Y|X)
-    mean    sd     50%    2.5%   97.5%
- 189.004 9.413 188.769 170.071 207.312
 > 
 > plot(s.out1)
 > 
@@ -159,11 +131,11 @@ First Differences E(Y|X1)-E(Y|X)
 
 
 How to cite this model in Zelig:
-  Kosuke Imai, Gary King, and Olivia Lau. 2011.
+  Nicholas Carnes. 2011.
   "normal.survey"
   in Kosuke Imai, Gary King, and Olivia Lau, "Zelig: Everyone's Statistical Software,"
   http://gking.harvard.edu/zelig
-
+ 
 > 
 > summary(z.out2)
 
@@ -208,11 +180,11 @@ Number of Fisher Scoring iterations: 2
 
 
 How to cite this model in Zelig:
-  Kosuke Imai, Gary King, and Olivia Lau. 2011.
+  Nicholas Carnes. 2011.
   "normal.survey"
   in Kosuke Imai, Gary King, and Olivia Lau, "Zelig: Everyone's Statistical Software,"
   http://gking.harvard.edu/zelig
-
+ 
 Warning message:
 In svrepdesign.default(data = data, repweights = repweights, type = type,  :
   No sampling weights provided: equal probability assumed

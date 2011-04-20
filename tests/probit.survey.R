@@ -1,4 +1,4 @@
-library(survey.Zelig)
+library(survey.zelig)
 
 data(api, package="survey")
 
