@@ -23,7 +23,7 @@ Loading required package: iterators
 Loading required package: survival
 Loading required package: splines
 
-   ZELIG (Versions  4.0-0 , built:  2010-09-28 )
+   ZELIG (Versions  4.0-2 , built:  2011-04-27 )
 
 +----------------------------------------------------------------+
 +  Please refer to http://gking.harvard.edu/zelig for full       +
@@ -74,7 +74,7 @@ How to cite this model in Zelig:
 > summary(z.out1)
 
 Call:
-svyglm(formula = stored.formula, design = design, family = stored.family)
+svyglm(formula = api00 ~ meals + yr.rnd, design = design, family = stored.family)
 
 Survey design:
 svydesign(data = data, ids = ids, probs = probs, strata = strata, 
@@ -139,7 +139,7 @@ How to cite this model in Zelig:
 > summary(z.out2)
 
 Call:
-svyglm(formula = stored.formula, design = design, family = stored.family)
+svyglm(formula = api00 ~ meals + yr.rnd, design = design, family = stored.family)
 
 Survey design:
 svydesign(data = data, ids = ids, probs = probs, strata = strata, 
@@ -179,7 +179,7 @@ How to cite this model in Zelig:
 > summary(z.out3)
 
 Call:
-svyglm(formula = stored.formula, design = design, family = stored.family)
+svyglm(formula = api00 ~ meals + yr.rnd, design = design, family = stored.family)
 
 Survey design:
 svydesign(data = data, ids = ids, probs = probs, strata = strata, 

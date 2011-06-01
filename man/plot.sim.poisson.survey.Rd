@@ -1,0 +1,10 @@
+\name{plot.sim.poisson.survey}
+\alias{plot.sim.poisson.survey}
+\title{Plot Simulated Quantities of Interest for poisson...}
+\usage{\method{plot}{sim.poisson.survey}(x, xlab="", user.par=FALSE, ...)}
+\description{Plot Simulated Quantities of Interest for \code{poisson.survey}}
+\value{This function is used for its side-effects}
+\arguments{\item{x}{A \code{qi} object containing simulated quantities of interest}
+\item{xlab}{Label for the x-axis}
+\item{user.par}{User-specified graphical parameters}
+\item{...}{ignored parameters}}

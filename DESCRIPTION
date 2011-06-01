@@ -3,10 +3,20 @@ Type: Package
 Title: Survey-Weighted General Linear Models for Zelig
 Depends: Zelig, survey
 Zelig-Compliant: Yes
-Version: 1.0
+Version: 1.0-1
 Date: 2011-01-10
 Author: Matt Owen
 Maintainer: Matt Owen<mowen@iq.harvard.edu>
 Description: Implements Survey-weighted General Linear Models for Zelig
 License: GPL
 LazyLoad: yes
+Collate: 'describe.gamma.survey.R' 'describe.logit.survey.R'
+    'describe.normal.survey.R' 'describe.poisson.survey.R'
+    'describe.probit.survey.R' 'param.gamma.survey.R'
+    'param.logit.survey.R' 'param.normal.survey.R'
+    'param.poisson.survey.R' 'param.probit.survey.R'
+    'plot.sim.probit.survey.R' 'qi.gamma.survey.R' 'qi.logit.survey.R'
+    'qi.normal.survey.R' 'qi.poisson.survey.R' 'qi.probit.survey.R'
+    'survey.zelig-package.R' 'zelig2gamma.survey.R'
+    'zelig2logit.survey.R' 'zelig2normal.survey.R'
+    'zelig2poisson.survey.R' 'zelig2probit.survey.R'

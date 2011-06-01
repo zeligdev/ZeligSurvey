@@ -1,17 +1,24 @@
+#' Plot Simulated Quantities of Interest for \code{probit.survey}
+#' @S3method plot sim.probit.survey
+#' @usage \method{plot}{sim.probit.survey}(x, xlab="", user.par=FALSE, ...)
+#' @param x A \code{qi} object containing simulated quantities of interest
+#' @param xlab Label for the x-axis
+#' @param user.par User-specified graphical parameters
+#' @param ... ignored parameters
+#' @return This function is used for its side-effects
 plot.sim.probit.survey <- function(
-                                   sim.object,
+                                   x,
                                    xlab="",
                                    user.par=FALSE,
                                    ...
                                    ) {
-
 
   # save old device (??)
   old.par <- par(no.readonly=TRUE)
 
 
   # get quantities of interest
-  qi <- sim.object$qi
+  qi <- x$qi
 
 
   # 
@@ -86,7 +93,39 @@ plot.sim.probit.survey <- function(
   par(old.par)
 }
 
+#' Plot Simulated Quantities of Interest for \code{probit.survey}
+#' @S3method plot sim.gamma.survey
+#' @usage \method{plot}{sim.gamma.survey}(x, xlab="", user.par=FALSE, ...)
+#' @param x A \code{qi} object containing simulated quantities of interest
+#' @param xlab Label for the x-axis
+#' @param user.par User-specified graphical parameters
+#' @param ... ignored parameters
+#' @return This function is used for its side-effects
 plot.sim.gamma.survey <- plot.sim.probit.survey
+#' Plot Simulated Quantities of Interest for \code{logit.survey}
+#' @S3method plot sim.logit.survey
+#' @usage \method{plot}{sim.logit.survey}(x, xlab="", user.par=FALSE, ...)
+#' @param x A \code{qi} object containing simulated quantities of interest
+#' @param xlab Label for the x-axis
+#' @param user.par User-specified graphical parameters
+#' @param ... ignored parameters
+#' @return This function is used for its side-effects
 plot.sim.logit.survey <- plot.sim.probit.survey
+#' Plot Simulated Quantities of Interest for \code{normal.survey}
+#' @S3method plot sim.normal.survey
+#' @usage \method{plot}{sim.normal.survey}(x, xlab="", user.par=FALSE, ...)
+#' @param x A \code{qi} object containing simulated quantities of interest
+#' @param xlab Label for the x-axis
+#' @param user.par User-specified graphical parameters
+#' @param ... ignored parameters
+#' @return This function is used for its side-effects
 plot.sim.normal.survey <- plot.sim.probit.survey
+#' Plot Simulated Quantities of Interest for \code{poisson.survey}
+#' @S3method plot sim.poisson.survey
+#' @usage \method{plot}{sim.poisson.survey}(x, xlab="", user.par=FALSE, ...)
+#' @param x A \code{qi} object containing simulated quantities of interest
+#' @param xlab Label for the x-axis
+#' @param user.par User-specified graphical parameters
+#' @param ... ignored parameters
+#' @return This function is used for its side-effects
 plot.sim.poisson.survey <- plot.sim.probit.survey
