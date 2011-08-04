@@ -2,9 +2,9 @@
 #'
 #' \tabular{ll}{
 #' Package: \tab survey.zelig\cr
-#' Version: \tab 1.0-1\cr
+#' Version: \tab 1.0-2\cr
 #' Date: \tab 2011-05-05\cr
-#' Depends: \tab Zelig, survey\cr
+#' Depends: \tab Zelig (>= 4.0-4), survey\cr
 #' License: \tab GPL version 2 or newer\cr
 #' URL: \tab http://gking.harvard.edu/zelig\cr
 #' }

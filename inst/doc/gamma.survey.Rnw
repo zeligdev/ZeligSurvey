@@ -3,7 +3,6 @@
 \SweaveOpts{results=hide, prefix.string=vigpics/gammasurvey}
 
 \usepackage{Zelig}
-\usepackage{Rd}
 \usepackage{bibentry}
 \usepackage{upquote}
 \usepackage{graphicx}

@@ -3,7 +3,6 @@
 \SweaveOpts{results=hide, prefix.string=vigpics/poissonsurvey}
 
 \usepackage{Zelig}
-\usepackage{Rd}
 \usepackage{bibentry}
 \usepackage{upquote}
 \usepackage{graphicx}

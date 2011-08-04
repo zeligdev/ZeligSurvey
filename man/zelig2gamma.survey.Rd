@@ -6,7 +6,7 @@
     combined.weights=FALSE, rho, bootstrap.average, scale, rscales,
     fpctype="fraction", return.replicates=FALSE, na.action="na.omit",
     start, etastart, mustart, offset, model1=TRUE, method="glm.fit",
-    x=FALSE, y=TRUE, contrasts, design, link="inverse", data)}
+    x=FALSE, y=TRUE, contrasts, design, link="inverse", data, ...)}
 \description{Interface between \code{zelig} and \code{svyglm} for the \code{gamma.survey}}
 \note{This manual file is largely incomplete, and needs a significant amount
 of filling out. This, in itself, might be motivation to divide this
@@ -42,4 +42,5 @@ function}
 \item{contrasts}{NULL}
 \item{design}{NULL}
 \item{link}{"inverse"}
-\item{data}{a \code{data.frame}}}
+\item{data}{a \code{data.frame}}
+\item{...}{ignored parameters}}

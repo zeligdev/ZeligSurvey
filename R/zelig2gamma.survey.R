@@ -32,6 +32,7 @@
 #' @param design NULL
 #' @param link "inverse"
 #' @param data a \code{data.frame}
+#' @param ... ignored parameters
 #' @return a \code{list} used to construct parameters for the \code{svyglm}
 #'   function
 #' @export
@@ -65,7 +66,8 @@ zelig2gamma.survey <- function(
                                contrasts = NULL,
                                design = NULL,
                                link = "inverse",
-                               data
+                               data,
+                               ...
                                ) {
   if (is.null(ids))
     ids <- ~1
@@ -74,7 +76,7 @@ zelig2gamma.survey <- function(
   # NOTE: nothing truly special goes on here;
   #       the below just makes sure the design is created correctly
   #       for whether or not the replication weights are set
-  design <- if (is.null(repweights))
+  design <- if (is.null(repweights)) {
     svydesign(
               data=data,
               ids=ids,
@@ -85,6 +87,7 @@ zelig2gamma.survey <- function(
               check.strata=check.strata,
               weights=weights
               )
+  }
 
   else {
     assign(".survey.prob.weights", weights, envir=.GlobalEnv)
