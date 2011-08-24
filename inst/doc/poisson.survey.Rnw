@@ -14,7 +14,6 @@
 \usepackage{verbatim}
 \usepackage{epsf}
 \usepackage{url}
-\usepackage{html}
 \usepackage{dcolumn}
 \usepackage{multirow}
 \usepackage{fullpage}
