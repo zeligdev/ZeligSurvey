@@ -36,7 +36,7 @@
 @
 
 <<loadLibrary, echo=F,results=hide>>= 
-library(survey.zelig)
+library(ZeligSurvey)
 @
 \section{{\tt logit.survey}: Survey-Weighted Logistic Regression for Dichotomous Dependent Variables}
 \label{logit.survey}
@@ -536,7 +536,7 @@ are therefore advised to re-name any object called {\tt .survey.prob.weights} be
  \cite{McCNel89}.
  
 \bibliographystyle{plain}
-\bibliography{survey.Zelig}
+\bibliography{ZeligSurvey}
 
 <<afterpkgs, echo=FALSE>>=
   after<-search()

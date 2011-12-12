@@ -1,4 +1,4 @@
-library(survey.zelig)
+library(ZeligSurvey)
 
 data(api)
 

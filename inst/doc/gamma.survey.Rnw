@@ -30,7 +30,7 @@
 
 \nobibliography* 
 <<loadLibrary, echo=F,results=hide>>= 
-library(survey.zelig)
+library(ZeligSurvey)
 
 @
 \section{{\tt gamma.survey}: Survey-Weighted Gamma Regression for Continuous, Positive Dependent Variables}
@@ -511,6 +511,6 @@ are therefore advised to re-name any object called {\tt .survey.prob.weights} be
  \cite{McCNel89}.
   
 \bibliographystyle{plain}
-\bibliography{survey.Zelig}
+\bibliography{ZeligSurvey}
 
 \end{document}

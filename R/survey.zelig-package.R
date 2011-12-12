@@ -1,10 +1,10 @@
 #' Survey-Weighted Regression Models for Zelig
 #'
 #' \tabular{ll}{
-#' Package: \tab survey.zelig\cr
-#' Version: \tab 1.0-2\cr
-#' Date: \tab 2011-05-05\cr
-#' Depends: \tab Zelig (>= 4.0-4), survey\cr
+#' Package: \tab ZeligSurvey\cr
+#' Version: \tab 1.0-3\cr
+#' Date: \tab 2011-12-12\cr
+#' Depends: \tab Zelig (>= 4.0-6), survey\cr
 #' License: \tab GPL version 2 or newer\cr
 #' URL: \tab http://gking.harvard.edu/zelig\cr
 #' }
@@ -18,8 +18,8 @@
 #' probit.survey: \tab Survey-Weighted Probit Regression \cr
 #' }
 #' 
-#' @name survey.zelig-package
-#' @aliases survey.zelig
+#' @name ZeligSurvey-package
+#' @aliases ZeligSurvey
 #' @docType package
 #' @author Matt Owen \email{mowen@@iq.harvard.edu}, Kosuke Imai, Olivia Lau,
 #'   and Gary King 
